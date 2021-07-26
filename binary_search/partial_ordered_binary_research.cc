@@ -18,28 +18,28 @@
 
 
 int find_aux(vector<int> &nums, int left, int right, int &target) {
-	if (left > right || nums.empty()) return -1;
+  if (left > right || nums.empty()) return -1;
 
-	int mid = left + (right - left) >> 1; // 防止left + right溢出
+  int mid = left + (right - left) >> 1; // 防止left + right溢出
 
-	if (nums[mid] == target) return mid;
+  if (nums[mid] == target) return mid;
 
-	if (nums[mid] > nums[left]) { // 说明左边一定有序
-		if (target >= nums[left] && target < nums[mid]) // target在有序的左边
-			return find_aux(nums, left, mid - 1, target);
+  if (nums[mid] > nums[left]) { // 说明左边一定有序
+    if (target >= nums[left] && target < nums[mid]) // target在有序的左边
+      return find_aux(nums, left, mid - 1, target);
 
-		return find_aux(nums, mid + 1, right, target);
-	} else { // 说明右边一定有序
-		if (target > nums[mid] && target <= nums[right]) // target在有序的右边
-			return find_aux(nums, mid + 1, right, target);
+    return find_aux(nums, mid + 1, right, target);
+  } else { // 说明右边一定有序
+    if (target > nums[mid] && target <= nums[right]) // target在有序的右边
+      return find_aux(nums, mid + 1, right, target);
 
-		return find_aux(nums, left, mid - 1, target);
-	}
+    return find_aux(nums, left, mid - 1, target);
+  }
 }
 
 int find(vector<int> &nums, int target) {
-	if (nums.empty()) return -1;
+  if (nums.empty()) return -1;
 
-	return find_aux(nums, 0, nums.size() - 1, target);
+  return find_aux(nums, 0, nums.size() - 1, target);
 }
 
