@@ -9,35 +9,35 @@ e.g. str1=word, str2=xord
 */
 
 bool recheck(string &t, int index, char prev) {
-	for (int i = 0; i < index; ++i) {
-		if (t[i] != prev)
-			return false;
-	}
+  for (int i = 0; i < index; ++i) {
+    if (t[i] != prev)
+      return false;
+    }
 
-	return true;
+  return true;
 }
 
 bool check(string &s, string &t) {
-	if (s.size() > t.size()) return false;
+  if (s.size() > t.size()) return false;
 
-	int i = 0, j = 0;
-	char prev = s[i];
-	while (i < s.size()) {
-		while (j < t.size()) {
-			if (s[i] == t[j]) {
-				++j;
-				break;
-			} else if (prev != t[j]) {
-				return false;
-			}
-			++j;
-		}
-		prev = s[i];
-		++i;
-	}
-
-	if (i == s.size() && recheck(t, j, prev))
-		return true;
-
+  int i = 0, j = 0;
+  char prev = s[i];
+  while (i < s.size()) {
+    while (j < t.size()) {
+      if (s[i] == t[j]) {
+	++j;
+	break;
+      } else if (prev != t[j]) {
 	return false;
+      }
+      ++j;
+    }
+    prev = s[i];
+    ++i;
+   }
+
+   if (i == s.size() && recheck(t, j, prev))
+     return true;
+
+   return false;
 }
