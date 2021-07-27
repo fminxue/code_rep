@@ -9,7 +9,7 @@ e.g. str1=word, str2=xord
 */
 
 bool recheck(string &t, int index, char prev) {
-  for (int i = 0; i < index; ++i) {
+  for (int i = index; i < t.size(); ++i) {
     if (t[i] != prev)
       return false;
     }
